@@ -41,7 +41,8 @@ dependencies {
             "org.aeonbits.owner:owner:$ownerVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
             "org.slf4j:slf4j-simple:$slf4jVersion",
-            "commons-io:commons-io:$commonsVersion"
+            "commons-io:commons-io:$commonsVersion",
+            "io.github.bonigarcia:webdrivermanager:5.6.3"
     )
 }
 
