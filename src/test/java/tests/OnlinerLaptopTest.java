@@ -1,51 +1,81 @@
 package tests;
 
-import pages.*;
+import io.qameta.allure.*;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import pages.*;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static io.qameta.allure.Allure.step;
 
+@Epic("Onliner.by E-commerce")
+@Feature("Корзина покупок")
+@Story("Добавление и удаление товаров из корзины")
+@Tag("onliner")
 public class OnlinerLaptopTest extends TestBase {
 
+    private String laptopName = "";
+
     @Test
+    @DisplayName("Добавление и удаление ноутбука из корзины")
+    @Description("Тест проверяет полный цикл: выбор ноутбука, добавление в корзину и удаление")
+    @Severity(SeverityLevel.CRITICAL)
+    @Owner("QA Team")
+    @Link(name = "Onliner.by", url = "https://www.onliner.by")
     void buyAndRemoveLaptopFromCart() {
-        // Инициализация Page Objects
         MainPage mainPage = new MainPage();
         CatalogPage catalogPage = new CatalogPage();
         ProductPage productPage = new ProductPage();
         CartPage cartPage = new CartPage();
 
-        String laptopName = "";
+        step("1. Открыть главную страницу Onliner.by", () -> {
+            mainPage.openMainPage();
+        });
 
-        // 1. Открыть главную страницу и принять куки
-        mainPage.openMainPage();
-        mainPage.acceptCookies();
+        step("2. Принять cookies если отображаются", () -> {
+            mainPage.acceptCookies();
+        });
 
-        // 2. Перейти в раздел Ноутбуки
-        mainPage.goToLaptopsSection();
+        step("3. Перейти в раздел 'Ноутбуки'", () -> {
+            mainPage.goToLaptopsSection();
+        });
 
-        // 3. Выбрать первый ноутбук
-        catalogPage.selectFirstLaptop();
+        step("4. Выбрать первый ноутбук в списке", () -> {
+            catalogPage.selectFirstLaptop();
+        });
 
-        // 4. Получить название ноутбука
-        laptopName = productPage.getProductTitle();
+        step("5. Получить полное название ноутбука", () -> {
+            laptopName = productPage.getProductTitle();
+            Allure.addAttachment("Название ноутбука", "text/plain", laptopName);
+        });
 
-        // 5. Перейти к предложениям и добавить в корзину
-        productPage.goToPrices();
-        productPage.addToCartFromFirstSeller();
+        step("6. Перейти к предложениям продавцов", () -> {
+            productPage.goToPrices();
+        });
 
-        // 6. Перейти в корзину
-        productPage.goToCart();
+        step("7. Добавить ноутбук в корзину у первого продавца", () -> {
+            productPage.addToCartFromFirstSeller();
+        });
 
-        // 7. Проверить добавление и удалить товар
-        cartPage.verifyProductAdded();
-        cartPage.removeProduct();
-        cartPage.verifyProductRemoved();
+        step("8. Перейти в корзину для проверки", () -> {
+            productPage.goToCart();
+        });
 
-        System.out.println("🎉 ТЕСТ ПРОЙДЕН! Ноутбук '" + laptopName + "' успешно добавлен и удалён из корзины!");
+        step("9. Проверить что ноутбук добавлен в корзину", () -> {
+            cartPage.verifyProductAdded();
+        });
 
-        // Дополнительная проверка
-        assertTrue(cartPage.getRemovalMessage().contains("Вы удалили"),
-                "Сообщение об удалении не отображается корректно");
+        step("10. Удалить ноутбук из корзины", () -> {
+            cartPage.removeProduct();
+        });
+
+        step("11. Проверить сообщение об успешном удалении", () -> {
+            cartPage.verifyProductRemoved();
+        });
+
+        step("12. Завершение теста", () -> {
+            Allure.addAttachment("Результат теста", "text/plain",
+                    "✅ ТЕСТ ПРОЙДЕН! Ноутбук '" + laptopName + "' успешно добавлен и удалён из корзины!");
+        });
     }
 }
