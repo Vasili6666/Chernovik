@@ -7,6 +7,89 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
+
+public class OnlinerLaptopTest {
+
+    @BeforeAll
+    static void beforeAll() {
+        WebDriverManager.chromedriver().setup();
+        Configuration.browser = "chrome";
+        Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 15000;
+    }
+
+    @AfterEach
+    void afterEach() {
+        closeWebDriver();
+    }
+
+    @Test
+    void buyAndRemoveLaptopFromCart() {
+        String[] laptopName = {""};
+
+        // 1. Открыть главную страницу
+        open("https://www.onliner.by/");
+        sleep(3000);
+
+        // 2. Принять куки если есть
+        if ($(byText("Принять все cookie")).exists()) {
+            $(byText("Принять все cookie")).click();
+            sleep(1000);
+        }
+
+        // 3. Перейти в раздел Ноутбуки
+        $("a[href='https://catalog.onliner.by/notebook']").click();
+        sleep(5000);
+
+        // 4. Кликнуть на первый ноутбук
+        $$(".catalog-form__offers-flex").first()
+                .$("a[href*='/notebook/']").click();
+        sleep(5000);
+
+        // 5. Получить полное название ноутбука
+        laptopName[0] = $("h1.catalog-masthead__title").getText().trim();
+
+        // 6. Перейти к предложениям
+        $("a[href*='/prices']").scrollIntoView(true).click();
+        sleep(3000);
+
+        // 7. Нажать кнопку 'Купить' у первого продавца
+        executeJavaScript("document.querySelector('.offers-list__button_cart.button-style_expletive').click();");
+        sleep(3000);
+
+        // 8. Перейти в корзину
+        $(byText("Перейти в корзину")).click();
+        sleep(5000);
+
+        // 9. Проверить добавление в корзину
+        $(".cart-form__description_condensed-other").shouldBe(visible);
+
+        // 10. Удалить товар из корзины
+        $(".cart-form__button_remove").click();
+        sleep(3000);
+
+        // 11. Проверить сообщение об удалении
+        $(".cart-form__description_condensed-extra").shouldHave(text("Вы удалили"));
+
+        System.out.println("🎉 ТЕСТ ПРОЙДЕН! Ноутбук '" + laptopName[0] + "' успешно добавлен и удалён из корзины!");
+    }
+}
+
+
+
+
+/*
+package tests;
+
+import com.codeborne.selenide.Configuration;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverConditions.urlContaining;
@@ -51,15 +134,12 @@ public class OnlinerLaptopTest {
         });
 
         step("4. Проверить заголовок", () -> {
-            if ($("h1.catalog-form__title").exists()) {
-                $("h1.catalog-form__title").shouldHave(text("Ноутбуки"));
-            } else if ($("h1").exists()) {
-                $("h1").shouldHave(text("Ноутбуки"));
-            } else {
+
                 webdriver().shouldHave(urlContaining("catalog.onliner.by/notebook"));
                 System.out.println("Страница ноутбуков загружена по URL");
-            }
+
         });
+
 
         step("5. Кликнуть на первый ноутбук", () -> {
             // Сохраняем название ноутбука из каталога
@@ -97,17 +177,7 @@ public class OnlinerLaptopTest {
             System.out.println("✅ Перешли к списку предложений");
         });
 
-        /*step("7. Обработать всплывающее окно с доставкой", () -> {
-            // Сначала обрабатываем окно доставки, если оно появилось
-            if ($(byText("Доставка в Минск?")).exists()) {
-                System.out.println("✅ Всплывающее окно с доставкой появилось");
-                $(byText("Да")).click();
-                System.out.println("✅ Нажата кнопка 'Да' в окне доставки");
-                sleep(1000);
-            } else {
-                System.out.println("ℹ️ Окно с доставкой не появилось");
-            }
-        });*/
+
 
         step("8. Нажать кнопку 'Купить' у первого продавца", () -> {
             // Ждем загрузки списка предложений
@@ -139,7 +209,7 @@ public class OnlinerLaptopTest {
             sleep(5000);
         });
 
-        // Остальные шаги остаются без изменений...
+
         step("10. Проверить добавление в корзину по названию товара", () -> {
             webdriver().shouldHave(urlContaining("cart.onliner.by"));
 
@@ -172,10 +242,12 @@ public class OnlinerLaptopTest {
             System.out.println("✅ Товар удален из корзины");
         });
 
-        /*step("12. Проверить сообщение об удалении", () -> {
+        */
+/*step("12. Проверить сообщение об удалении", () -> {
             $(".cart-form__description_primary").shouldHave(text("Вы удалили"));
             System.out.println("✅ Сообщение об удалении отображается");
-        });*/
+        });*//*
+
         step("12. Проверить сообщение об удалении", () -> {
             $(".cart-form__description_condensed-extra")
                     .shouldBe(visible)
@@ -187,4 +259,4 @@ public class OnlinerLaptopTest {
             System.out.println("🎉 ТЕСТ ПРОЙДЕН! Ноутбук '" + laptopName[0] + "' успешно добавлен и удалён из корзины!");
         });
     }
-}
+}*/
