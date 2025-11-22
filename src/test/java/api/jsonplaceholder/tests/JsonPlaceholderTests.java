@@ -1,162 +1,57 @@
 package api.jsonplaceholder.tests;
 
-import api.jsonplaceholder.models.lombok.BodyLombokModelsUpdatePostTest;
-import api.jsonplaceholder.models.lombok.ResponseLomboktUpdatePostTest;
-import api.jsonplaceholder.models.lombok.ResponseLombokPostByIdTest;
+import api.jsonplaceholder.steps.PostApiSteps;
+import api.jsonplaceholder.steps.UserApiSteps;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import tests.ApiTestBase;
 
-
-import static io.qameta.allure.Allure.step;
-import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.*;
-import static api.jsonplaceholder.specs.CreatePostSpec.createPostRequestSpec;
-import static api.jsonplaceholder.specs.CreatePostSpec.createPostResponseSpec;
-import static api.jsonplaceholder.specs.GetUsersSpecs.getUsersRequestSpec;
-import static api.jsonplaceholder.specs.GetUsersSpecs.getUsersResponseSpec;
-import static api.jsonplaceholder.specs.PostByIdSpec.postByIdRequestSpec;
-import static api.jsonplaceholder.specs.PostByIdSpec.postByIdResponseSpec;
-import static api.jsonplaceholder.specs.UpdatePostSpecs.updatePostRequestSpec;
-import static api.jsonplaceholder.specs.UpdatePostSpecs.updatePostResponseSpec;
-import static api.jsonplaceholder.specs.UserByIdSpec.getUserByIdRequestSpec;
-import static api.jsonplaceholder.specs.UserByIdSpec.getUserByIdResponseSpec;
-import static api.jsonplaceholder.specs.UserWithWrongIdSpec.getUserWithWrongIdRequestSpec;
-import static api.jsonplaceholder.specs.UserWithWrongIdSpec.getUserWithWrongIdResponseSpec;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-
 @Tag("api")
 public class JsonPlaceholderTests extends ApiTestBase {
 
+    private final PostApiSteps postSteps = new PostApiSteps();
+    private final UserApiSteps userSteps = new UserApiSteps();
+
     @Test
-
-    @DisplayName("Изменение поста с Lombok (PUT /posts/1)")
+    @DisplayName("Изменение поста с Lombok")
     public void lombokUpdatePostTest() {
-        BodyLombokModelsUpdatePostTest data = new BodyLombokModelsUpdatePostTest();
-        data.setId(1);
-        data.setTitle("Basil post updated");
-        data.setBody("Fata viam invenient. (пер. «Судьба найдёт путь.»)");
-        data.setUserId(1);
-
-        ResponseLomboktUpdatePostTest response = step("Выполняем PUT-запрос", () ->
-                given(updatePostRequestSpec)
-                        .body(data)
-                        .when()
-                        .put()
-                        .then()
-                        .spec(updatePostResponseSpec)
-                        .extract()
-                        .as(ResponseLomboktUpdatePostTest.class)
-        );
-
-        step("Проверяем ответ", () -> {
-            assertEquals(data.getTitle(), response.getTitle(), "Заголовок поста не совпадает!");
-            assertEquals(data.getUserId(), response.getUserId(), "userId должен быть равен 1");
-            assertEquals(data.getBody(), response.getBody(), "Body не совпадает");
-        });
+        postSteps.updatePost();
     }
 
     @Test
     @DisplayName("GET поста по ID")
     public void getPostByIdTest() {
-        ResponseLombokPostByIdTest response = step("GET /posts/20", () ->
-                given(postByIdRequestSpec)
-                        .when()
-                        .get()
-                        .then()
-                        .spec(postByIdResponseSpec)
-                        .extract()
-                        .as(ResponseLombokPostByIdTest.class)
-        );
-
-        step("Проверяем ответ", () -> {
-            assertNotNull(response.getId(), "ID поста пустой!");
-            assertNotNull(response.getTitle(), "Заголовок поста пустой!");
-            assertNotNull(response.getBody(), "Body поста пустой!");
-            assertNotNull(response.getUserId(), "userId поста пустой!");
-        });
+        postSteps.getPostById();
     }
 
     @Test
-    @DisplayName("Создание нового поста (POST /posts)")
+    @DisplayName("Создание нового поста")
     public void createPostTest() {
-        BodyLombokModelsUpdatePostTest data = new BodyLombokModelsUpdatePostTest();
-        data.setTitle("Basil post");
-        data.setBody("Fata viam invenient.");
-        data.setUserId(1);
-
-        ResponseLomboktUpdatePostTest response = step("POST /posts", () ->
-                given(createPostRequestSpec)
-                        //.filter(withCustomTemplates())
-                        .body(data)
-                        .when()
-                        .post()
-                        .then()
-                        .spec(createPostResponseSpec)
-                        .extract()
-                        .as(ResponseLomboktUpdatePostTest.class)
-        );
-
-        step("Проверяем ответ", () -> {
-            assertEquals(data.getTitle(), response.getTitle());
-            assertEquals(data.getBody(), response.getBody());
-            assertEquals(data.getUserId(), response.getUserId());
-        });
+        postSteps.createPost();
     }
 
     @Test
-    @DisplayName("Удаление поста (DELETE /posts/1)")
+    @DisplayName("Удаление поста")
     public void deletePostTest() {
-        step("DELETE /posts/1", () ->
-                given(updatePostRequestSpec)
-                        .when()
-                        .delete()
-                        .then()
-                        .spec(updatePostResponseSpec)
-        );
+        postSteps.deletePost();
     }
 
     @Test
-    @DisplayName("Получаем всех пользователей (GET /users)")
+    @DisplayName("Получаем всех пользователей")
     public void getAllUsersTest() {
-        step("GET /users", () ->
-                given(getUsersRequestSpec)
-                        .when()
-                        .get()
-                        .then()
-                        .spec(getUsersResponseSpec)
-                        .body("$", not(empty()))
-                        .body("id", everyItem(greaterThan(0))) // проверка, что у каждого пользователя id > 0
-        );
+        userSteps.getAllUsers();
     }
 
     @Test
-    @DisplayName("Получаем пользователя по ID (GET /users/4)")
+    @DisplayName("Получаем пользователя по ID")
     public void getUserByIdTest() {
-        step("GET /users/4", () ->
-                given(getUserByIdRequestSpec)
-                        .when()
-                        .get()
-                        .then()
-                        .spec(getUserByIdResponseSpec)
-                        .body("id", equalTo(4)) // проверка, что id == 4
-                        .body("$", not(empty()))
-        );
+        userSteps.getUserById();
     }
 
     @Test
-    @DisplayName("Получаем пользователя по неверному ID (GET /users/24)")
+    @DisplayName("Получаем пользователя по неверному ID")
     public void getUserWithWrongIdTest() {
-        step("GET /users/24", () ->
-                given(getUserWithWrongIdRequestSpec)
-                        .when()
-                        .get()
-                        .then()
-                        .spec(getUserWithWrongIdResponseSpec)
-                        .statusCode(404) // проверка, что возвращается 404
-        );
+        userSteps.getUserWithWrongId();
     }
 }

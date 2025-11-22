@@ -5,10 +5,16 @@ cat > .gitignore << EOF
 *.iws
 *.iml
 *.ipr
-
+# *.ajcore
 # Build
 build/
 out/
+
+# AspectJ debug files
+*.ajcore
+ajcore.*
+
+
 target/
 *.jar
 *.war

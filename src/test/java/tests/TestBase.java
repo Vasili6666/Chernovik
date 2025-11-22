@@ -29,7 +29,8 @@ public class TestBase {
         RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
         RestAssured.filters(CustomAllureListener.withCustomTemplates());
 
-
+        System.setProperty("org.aspectj.weaver.loadtime.configuration", "ajcore-disable");
+        System.setProperty("aspectj.dump", "none");
 
         String remoteUrl = getProperty("remoteUrl", null);
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
