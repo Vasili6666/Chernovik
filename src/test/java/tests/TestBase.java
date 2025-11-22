@@ -19,7 +19,11 @@ public class TestBase {
         Configuration.baseUrl = System.getProperty("baseUrl", "https://www.onliner.by");
         Configuration.browser = "chrome";
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.timeout = 15000;
+        Configuration.timeout = 20000;
+        Configuration.pageLoadTimeout = 30000;
+
+        // ⭐ ДОБАВЛЯЕМ EAGER ⭐
+        Configuration.pageLoadStrategy = "eager";
 
         // НАСТРОЙКА SELENOID (только если указан remoteUrl)
         String remoteUrl = System.getProperty("remoteUrl");
