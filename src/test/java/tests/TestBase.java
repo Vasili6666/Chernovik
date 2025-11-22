@@ -9,34 +9,31 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.util.Map;
-
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
     @BeforeAll
-    static void beforeAll() {
-        // ТВОИ СУЩЕСТВУЮЩИЕ НАСТРОЙКИ (не трогай их)
-        Configuration.browser = System.getProperty("browser", "chrome");
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+    static void setUp() {
+        // Базовые настройки
         Configuration.baseUrl = System.getProperty("baseUrl", "https://www.onliner.by");
+        Configuration.browser = "chrome";
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
         Configuration.timeout = 15000;
 
-        // ДОБАВЬ ЭТО ДЛЯ SELENOID ↓
+        // НАСТРОЙКА SELENOID (только если указан remoteUrl)
         String remoteUrl = System.getProperty("remoteUrl");
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
             Configuration.remote = remoteUrl;
-            Configuration.browserVersion = "128"; // добавляем версию браузера
+            Configuration.browserVersion = System.getProperty("browserVersion", "128");
 
-            // Простая настройка без сложных Map
-            Configuration.browserCapabilities = new DesiredCapabilities();
-            Configuration.browserCapabilities.setCapability("enableVNC", true);
-            Configuration.browserCapabilities.setCapability("enableVideo", true);
+            // Capabilities только для Selenoid
+            DesiredCapabilities capabilities = new DesiredCapabilities();
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+            Configuration.browserCapabilities = capabilities;
         }
-        // КОНЕЦ ДОБАВЛЕНИЯ ↑
 
-        // ТВОЙ СУЩЕСТВУЮЩИЙ КОД
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
@@ -46,9 +43,8 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
 
-        // Добавляем видео только для удаленных запусков
-        String remoteUrl = System.getProperty("remoteUrl");
-        if (remoteUrl != null && !remoteUrl.isEmpty()) {
+        // Видео только для Selenoid
+        if (Configuration.remote != null) {
             Attach.addVideo();
         }
 
