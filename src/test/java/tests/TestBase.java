@@ -1,53 +1,75 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import helpers.Attach;
+import helpers.CustomAllureListener;
 import io.qameta.allure.selenide.AllureSelenide;
+import io.restassured.RestAssured;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.util.HashMap;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
     @BeforeAll
-    static void setUp() {
-        // Базовые настройки
-        Configuration.baseUrl = System.getProperty("baseUrl", "https://www.onliner.by");
-        Configuration.browser = "chrome";
-        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.timeout = 20000;
-        Configuration.pageLoadTimeout = 30000;
+    static void setup() {
+        Configuration.baseUrl = getProperty("url", "https://onliner.by");
 
-        // ⭐ ДОБАВЛЯЕМ EAGER ⭐
+        Configuration.browser = getProperty("browser", "chrome");
+        Configuration.browserSize = getProperty("windowSize", "1920x1080");
         Configuration.pageLoadStrategy = "eager";
+        Configuration.timeout = 10000;
 
-        // НАСТРОЙКА SELENOID (только если указан remoteUrl)
-        String remoteUrl = System.getProperty("remoteUrl");
+        // Настройка RestAssured
+        RestAssured.baseURI = "https://jsonplaceholder.typicode.com";
+        RestAssured.filters(CustomAllureListener.withCustomTemplates());
+
+
+
+        String remoteUrl = getProperty("remoteUrl", null);
         if (remoteUrl != null && !remoteUrl.isEmpty()) {
             Configuration.remote = remoteUrl;
-            Configuration.browserVersion = System.getProperty("browserVersion", "128");
-
-            // Capabilities только для Selenoid
-            DesiredCapabilities capabilities = new DesiredCapabilities();
-            capabilities.setCapability("enableVNC", true);
-            capabilities.setCapability("enableVideo", true);
-            Configuration.browserCapabilities = capabilities;
+            setupSelenoidCapabilities();
         }
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+
+        logConfiguration();
+    }
+
+    private static void setupSelenoidCapabilities() {
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        HashMap<String, Object> selenoidOptions = new HashMap<>();
+        selenoidOptions.put("enableVNC", true);
+        selenoidOptions.put("enableVideo", true);
+        capabilities.setCapability("selenoid:options", selenoidOptions);
+        Configuration.browserCapabilities = capabilities;
+    }
+
+    private static String getProperty(String name, String defaultValue) {
+        return System.getProperty(name, defaultValue);
+    }
+
+    private static void logConfiguration() {
+        System.out.println("=== КОНФИГУРАЦИЯ ТЕСТОВ ===");
+        System.out.println("Browser: " + Configuration.browser);
+        System.out.println("Browser Size: " + Configuration.browserSize);
+        System.out.println("Base URL: " + Configuration.baseUrl);
+        System.out.println("Remote: " + Configuration.remote);
+        System.out.println("===========================");
     }
 
     @AfterEach
-    void addAttachments() {
+    void addAttachment() {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
 
-        // Видео только для Selenoid
         if (Configuration.remote != null) {
             Attach.addVideo();
         }

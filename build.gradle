@@ -1,31 +1,37 @@
 plugins {
-    id 'java'
-    id 'io.qameta.allure' version "2.11.2"
+    id 'java-library'
+    id 'io.qameta.allure' version '2.11.2'
+    id "io.freefair.lombok" version "6.6.1"
 }
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
-def aspectjWeaverVersion = "1.9.22",
-    selenideVersion = "6.13.0",
-    restAssuredVersion = "5.3.0",
-    allureVersion = "2.21.0",
-    junitVersion = "5.9.3",
-    slf4jVersion = "2.0.7",
-    ownerVersion = "1.0.12",
-    appiumVersion = "8.3.0",
-    commonsVersion = "2.11.0"
+def versions = [
+        aspectjWeaver: '1.9.21',
+        selenide      : '6.19.1',
+        allure        : '2.21.0',
+        appium        : '8.5.1',
+        restAssured   : '5.5.2',
+        owner         : '1.0.12',
+        junit         : '5.10.0',
+        slf4j         : '2.0.7',
+        commons       : '2.14.0'
+]
 
 allure {
     report {
-        version.set(allureVersion)
+        version.set(versions.allure)
     }
     adapter {
         aspectjWeaver.set(true)
         frameworks {
             junit5 {
-                adapterVersion.set(allureVersion)
+                adapterVersion.set(versions.allure)
             }
         }
     }
@@ -33,27 +39,44 @@ allure {
 
 dependencies {
     testImplementation(
-            "org.aspectj:aspectjweaver:$aspectjWeaverVersion",
-            "com.codeborne:selenide:$selenideVersion",
-            "io.qameta.allure:allure-selenide:$allureVersion",
-            "io.appium:java-client:$appiumVersion",
-            "io.rest-assured:rest-assured:$restAssuredVersion",
-            "org.aeonbits.owner:owner:$ownerVersion",
-            "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion",
-            "commons-io:commons-io:$commonsVersion",
-            "io.github.bonigarcia:webdrivermanager:5.6.3"
+            "org.aspectj:aspectjweaver:${versions.aspectjWeaver}",
+            "org.slf4j:slf4j-simple:${versions.slf4j}",
+            "commons-io:commons-io:${versions.commons}",
+            "org.aeonbits.owner:owner:${versions.owner}",
+            "org.junit.jupiter:junit-jupiter:${versions.junit}",
+            "org.assertj:assertj-core:3.24.2"
     )
+    testImplementation(
+            "com.codeborne:selenide:${versions.selenide}",
+            "io.qameta.allure:allure-selenide:${versions.allure}",
+            "io.github.bonigarcia:webdrivermanager:5.6.3",
+            "io.appium:java-client:${versions.appium}"
+    )
+    testImplementation("io.rest-assured:rest-assured:${versions.restAssured}")
+    testImplementation("io.qameta.allure:allure-rest-assured:${versions.allure}")
 }
 
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
 
-tasks.withType(Test) {
-    systemProperties(System.getProperties())
-    useJUnitPlatform()
+// --- FIX для FTL шаблонов ---
+tasks.processTestResources {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+    from('src/test/resources') {
+        include '**/*.ftl'
+    }
+}
 
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+    def tags = System.getProperty('tags', '')
+    if (!tags.isEmpty()) {
+        useJUnitPlatform { includeTags(tags) }
+    }
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -62,13 +85,21 @@ tasks.withType(Test) {
     }
 }
 
-// Задача для эмуляции и реальных устройств
-task localTest(type: Test) {
-    useJUnitPlatform()
-    systemProperty "deviceHost", "emulation" // можно переопределить через -DdeviceHost=real
+// --- Разделение тестов ---
+task api_test(type: Test) {
+    group = "verification"
+    description = "Run only API tests"
+    useJUnitPlatform { includeTags("api") }
 }
 
-// Задача по умолчанию - запускает все тесты на указанном устройстве
-test {
+task ui_test(type: Test) {
+    group = "verification"
+    description = "Run only UI tests"
+    useJUnitPlatform { includeTags("ui") }
+}
+
+task all_tests(type: Test) {
+    group = "verification"
+    description = "Run all tests"
     useJUnitPlatform()
 }
