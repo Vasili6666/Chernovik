@@ -16,13 +16,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PostApiSteps {
 
-    public void updatePost() {
-        step("API: Обновить пост с Lombok (PUT /posts/1)", () -> {
+    public void updatePost(int postId, String title, String body, int userId) {
+        step("API: Обновить пост с Lombok (PUT /posts/" + postId + ")", () -> {
             BodyLombokModelsUpdatePostTest data = new BodyLombokModelsUpdatePostTest();
-            data.setId(1);
-            data.setTitle("Basil post updated");
-            data.setBody("Fata viam invenient. (пер. «Судьба найдёт путь.»)");
-            data.setUserId(1);
+            data.setId(postId);
+            data.setTitle(title);
+            data.setBody(body);
+            data.setUserId(userId);
 
             ResponseLomboktUpdatePostTest response = given(updatePostRequestSpec)
                     .body(data)
@@ -33,14 +33,14 @@ public class PostApiSteps {
                     .extract()
                     .as(ResponseLomboktUpdatePostTest.class);
 
-            assertEquals(data.getTitle(), response.getTitle(), "Заголовок поста не совпадает!");
-            assertEquals(data.getUserId(), response.getUserId(), "userId должен быть равен 1");
-            assertEquals(data.getBody(), response.getBody(), "Body не совпадает");
+            assertEquals(title, response.getTitle(), "Заголовок поста не совпадает!");
+            assertEquals(userId, response.getUserId(), "userId должен быть равен " + userId);
+            assertEquals(body, response.getBody(), "Body не совпадает");
         });
     }
 
-    public void getPostById() {
-        step("API: Получить пост по ID (GET /posts/20)", () -> {
+    public void getPostById(int postId) {
+        step("API: Получить пост по ID (GET /posts/" + postId + ")", () -> {
             ResponseLombokPostByIdTest response = given(postByIdRequestSpec)
                     .when()
                     .get()
@@ -56,12 +56,12 @@ public class PostApiSteps {
         });
     }
 
-    public void createPost() {
+    public void createPost(String title, String body, int userId) {
         step("API: Создать новый пост (POST /posts)", () -> {
             BodyLombokModelsUpdatePostTest data = new BodyLombokModelsUpdatePostTest();
-            data.setTitle("Basil post");
-            data.setBody("Fata viam invenient.");
-            data.setUserId(1);
+            data.setTitle(title);
+            data.setBody(body);
+            data.setUserId(userId);
 
             ResponseLomboktUpdatePostTest response = given(createPostRequestSpec)
                     .body(data)
@@ -72,14 +72,14 @@ public class PostApiSteps {
                     .extract()
                     .as(ResponseLomboktUpdatePostTest.class);
 
-            assertEquals(data.getTitle(), response.getTitle());
-            assertEquals(data.getBody(), response.getBody());
-            assertEquals(data.getUserId(), response.getUserId());
+            assertEquals(title, response.getTitle(), "Заголовок поста не совпадает!");
+            assertEquals(body, response.getBody(), "Body поста не совпадает!");
+            assertEquals(userId, response.getUserId(), "userId должен быть равен " + userId);
         });
     }
 
-    public void deletePost() {
-        step("API: Удалить пост (DELETE /posts/1)", () ->
+    public void deletePost(int postId) {
+        step("API: Удалить пост (DELETE /posts/" + postId + ")", () ->
                 given(updatePostRequestSpec)
                         .when()
                         .delete()

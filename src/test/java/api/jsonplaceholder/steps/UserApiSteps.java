@@ -24,20 +24,20 @@ public class UserApiSteps {
         );
     }
 
-    public void getUserById() {
-        step("API: Получить пользователя по ID (GET /users/4)", () ->
+    public void getUserById(int userId) {
+        step("API: Получить пользователя по ID (GET /users/" + userId + ")", () ->
                 given(getUserByIdRequestSpec)
                         .when()
                         .get()
                         .then()
                         .spec(getUserByIdResponseSpec)
-                        .body("id", equalTo(4))
+                        .body("id", equalTo(userId))
                         .body("$", not(empty()))
         );
     }
 
-    public void getUserWithWrongId() {
-        step("API: Получить пользователя по неверному ID (GET /users/24)", () ->
+    public void getUserWithWrongId(int wrongUserId) {
+        step("API: Получить пользователя по неверному ID (GET /users/" + wrongUserId + ")", () ->
                 given(getUserWithWrongIdRequestSpec)
                         .when()
                         .get()
