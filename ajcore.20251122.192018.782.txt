@@ -1,0 +1,198 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.9.9.1 built on Thursday Mar 31, 2022 at 05:00:07 PDT
+---- Dump Properties ---
+Dump file: ajcore.20251122.192018.782.txt
+Dump reason: java.lang.RuntimeException
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+java.lang.RuntimeException: bad non-abstract method with no code: void org.codehaus.groovy.runtime.callsite.AbstractCallSite.<init>(org.codehaus.groovy.runtime.callsite.CallSiteArray, int, java.lang.String) on public class org.codehaus.groovy.runtime.callsite.AbstractCallSite
+	at org.aspectj.weaver.bcel.LazyMethodGen.<init>(LazyMethodGen.java:221)
+	at org.aspectj.weaver.bcel.LazyClassGen.<init>(LazyClassGen.java:360)
+	at org.aspectj.weaver.bcel.BcelObjectType.getLazyClassGen(BcelObjectType.java:561)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1699)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1650)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1417)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1192)
+	at org.aspectj.weaver.tools.WeavingAdaptor.getWovenBytes(WeavingAdaptor.java:549)
+	at org.aspectj.weaver.tools.WeavingAdaptor.weaveClass(WeavingAdaptor.java:385)
+	at org.aspectj.weaver.loadtime.Aj.preProcess(Aj.java:115)
+	at org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter.transform(ClassPreProcessorAgentAdapter.java:51)
+	at sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+	at sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:428)
+	at java.lang.ClassLoader.defineClass1(Native Method)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:757)
+	at java.lang.ClassLoader.defineClass(ClassLoader.java:636)
+	at org.codehaus.groovy.reflection.SunClassLoader.define(SunClassLoader.java:105)
+	at org.codehaus.groovy.runtime.callsite.GroovySunClassLoader.loadAbstract(GroovySunClassLoader.java:78)
+	at org.codehaus.groovy.runtime.callsite.GroovySunClassLoader.<init>(GroovySunClassLoader.java:59)
+	at org.codehaus.groovy.runtime.callsite.GroovySunClassLoader.<init>(GroovySunClassLoader.java:54)
+	at org.codehaus.groovy.runtime.callsite.GroovySunClassLoader.lambda$static$0(GroovySunClassLoader.java:40)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.codehaus.groovy.runtime.callsite.GroovySunClassLoader.doPrivileged(GroovySunClassLoader.java:50)
+	at org.codehaus.groovy.runtime.callsite.GroovySunClassLoader.<clinit>(GroovySunClassLoader.java:37)
+	at org.codehaus.groovy.runtime.callsite.CallSiteGenerator.isCompilable(CallSiteGenerator.java:252)
+	at org.codehaus.groovy.reflection.CachedMethod.createStaticMetaMethodSite(CachedMethod.java:302)
+	at org.codehaus.groovy.runtime.callsite.StaticMetaMethodSite.createStaticMetaMethodSite(StaticMetaMethodSite.java:114)
+	at groovy.lang.MetaClassImpl.createStaticSite(MetaClassImpl.java:3585)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallStaticSite(CallSiteArray.java:72)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.createCallSite(CallSiteArray.java:159)
+	at org.codehaus.groovy.runtime.callsite.CallSiteArray.defaultCall(CallSiteArray.java:45)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:125)
+	at org.codehaus.groovy.runtime.callsite.AbstractCallSite.call(AbstractCallSite.java:130)
+	at io.restassured.internal.common.assertion.AssertParameter.notNull(AssertParameter.groovy:21)
+	at io.restassured.config.SSLConfig.<init>(SSLConfig.java:201)
+	at io.restassured.config.SSLConfig.<init>(SSLConfig.java:193)
+	at io.restassured.config.RestAssuredConfig.<init>(RestAssuredConfig.java:41)
+	at io.restassured.RestAssured.<clinit>(RestAssured.java:422)
+	at tests.TestBase.setup(TestBase.java:29)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.junit.platform.commons.util.ReflectionUtils.invokeMethod(ReflectionUtils.java:728)
+	at org.junit.jupiter.engine.execution.MethodInvocation.proceed(MethodInvocation.java:60)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$ValidatingInvocation.proceed(InvocationInterceptorChain.java:131)
+	at io.qameta.allure.junit5.AllureJunit5.processFixture(AllureJunit5.java:138)
+	at io.qameta.allure.junit5.AllureJunit5.interceptBeforeAllMethod(AllureJunit5.java:100)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.intercept(TimeoutExtension.java:156)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptLifecycleMethod(TimeoutExtension.java:128)
+	at org.junit.jupiter.engine.extension.TimeoutExtension.interceptBeforeAllMethod(TimeoutExtension.java:70)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker$ReflectiveInterceptorCall.lambda$ofVoidMethod$0(InterceptingExecutableInvoker.java:103)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.lambda$invoke$0(InterceptingExecutableInvoker.java:93)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain$InterceptedInvocation.proceed(InvocationInterceptorChain.java:106)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.proceed(InvocationInterceptorChain.java:64)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.chainAndInvoke(InvocationInterceptorChain.java:45)
+	at org.junit.jupiter.engine.execution.InvocationInterceptorChain.invoke(InvocationInterceptorChain.java:37)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:92)
+	at org.junit.jupiter.engine.execution.InterceptingExecutableInvoker.invoke(InterceptingExecutableInvoker.java:86)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeBeforeAllMethods$13(ClassBasedTestDescriptor.java:412)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeBeforeAllMethods(ClassBasedTestDescriptor.java:410)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:216)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.before(ClassBasedTestDescriptor.java:85)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:148)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at java.util.ArrayList.forEach(ArrayList.java:1259)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:41)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$6(NodeTestTask.java:155)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$8(NodeTestTask.java:141)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:137)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$9(NodeTestTask.java:139)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:73)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:95)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:35)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:57)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:54)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:198)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:169)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:93)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:141)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:57)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:103)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:85)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:47)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.processAllTestClasses(JUnitPlatformTestClassProcessor.java:124)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor$CollectAllTestClassesExecutor.access$000(JUnitPlatformTestClassProcessor.java:99)
+	at org.gradle.api.internal.tasks.testing.junitplatform.JUnitPlatformTestClassProcessor.stop(JUnitPlatformTestClassProcessor.java:94)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
+	at com.sun.proxy.$Proxy4.stop(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
+	at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
+	at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
+	at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+---- System Properties ---
+java.runtime.name=OpenJDK Runtime Environment
+org.gradle.internal.worker.tmpdir=C:\Users\ASUS\IdeaProjects\Homework\Diplom\build\tmp\api_test\work
+sun.boot.library.path=C:\Program Files\Zulu\zulu-8\jre\bin;C:\Program Files\Zulu\zulu-8\jre\bin
+java.vm.version=25.472-b08
+jdk.vendor.version=Zulu 8.90.0.19-CA-win64
+java.vm.vendor=Azul Systems, Inc.
+java.vendor.url=http://www.azul.com/
+path.separator=;
+java.vm.name=OpenJDK 64-Bit Server VM
+file.encoding.pkg=sun.io
+user.country=RU
+user.script=
+sun.java.launcher=SUN_STANDARD
+sun.os.patch.level=
+java.vm.specification.name=Java Virtual Machine Specification
+user.dir=C:\Users\ASUS\IdeaProjects\Homework\Diplom
+java.runtime.version=1.8.0_472-b08
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.endorsed.dirs=C:\Program Files\Zulu\zulu-8\jre\lib\endorsed
+os.arch=amd64
+java.io.tmpdir=C:\Users\ASUS\AppData\Local\Temp\
+line.separator=
+
+org.gradle.appname=gradlew
+java.vm.specification.vendor=Oracle Corporation
+user.variant=
+os.name=Windows 11
+allure.results.directory=C:\Users\ASUS\IdeaProjects\Homework\Diplom\build\allure-results
+sun.jnu.encoding=Cp1251
+java.library.path=C:\Program Files\Zulu\zulu-8\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Users\ASUS\AppData\Local\Android\Sdk\cmdline-tools\latest\bin;C:\Users\ASUS\AppData\Local\Android\Sdk\platform-tools;C:\Users\ASUS\AppData\Local\Android\Sdk\emulator;C:\Program Files\Zulu\zulu-8\bin;C:\Program Files\Common Files\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Gradle\bin;C:\Program Files\Git\cmd;C:\ChromeDriver\;C:\Program Files\nodejs\;C:\Program Files\Zulu\zulu-8\bin;C:\Users\ASUS\AppData\Local\Programs\Python\Launcher\;C:\Users\ASUS\AppData\Local\Microsoft\WindowsApps;D:\Add programs for Android Studio\flutter SDK\flutter\bin;C:\Users\ASUS\AppData\Local\Programs\cursor\resources\app\bin;c:\Users\ASUS\AppData\Local\Programs\Python\Python313\Scripts\;c:\Users\ASUS\AppData\Local\Programs\Python\Python313\;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2025.1.3\bin;;C:\Users\ASUS\AppData\Roaming\npm;C:\Users\ASUS\AppData\Local\Android\Sdk\tools;C:\Users\ASUS\AppData\Local\Android\Sdk\tools\bin;C:\Users\ASUS\AppData\Local\Android\Sdk\platform-tools;C:\Users\ASUS\AppData\Local\Android\Sdk\emulator;;.
+java.specification.name=Java Platform API Specification
+java.class.version=52.0
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+os.version=10.0
+library.jansi.path=C:\Users\ASUS\.gradle\native\jansi\1.18\windows64
+user.home=C:\Users\ASUS
+user.timezone=Europe/Belgrade
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+file.encoding=windows-1251
+java.specification.version=1.8
+junit.jupiter.extensions.autodetection.enabled=true
+java.class.path=C:\Users\ASUS\IdeaProjects\Homework\Diplom\build\classes\java\test;C:\Users\ASUS\IdeaProjects\Homework\Diplom\build\resources\test;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.aspectj\aspectjweaver\1.9.21\beaabaea95c7f3330f415c72ee0ffe79b51d172f\aspectjweaver-1.9.21.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-simple\2.0.7\bfa4d4dad645a5b11c022ae0043bac2df6cf16b5\slf4j-simple-2.0.7.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.codeborne\selenide\6.19.1\286edcfef9fbac630b75d8e0220c144e40e6d008\selenide-6.19.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.appium\java-client\8.5.1\939a0a6d43188fb76b63aafad45e509370e2fa73\java-client-8.5.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.codeborne\selenide-core\6.19.1\308e55c332289f9d9cfe6e5cd778ab0848721c5b\selenide-core-6.19.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.github.bonigarcia\webdrivermanager\5.6.3\25c92222dd984710edf60eada23dcf6d17c97169\webdrivermanager-5.6.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java\3.3.4\4ec475e70b34cef5b683e452e7f58e1a344ec100\docker-java-3.3.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-core\3.3.4\4e24c61232e3a7d16af8cb664870ca6a9cb96ae0\docker-java-core-3.3.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.14.0\a4c6e1f6c196339473cd2e1b037f0eb97c62755b\commons-io-2.14.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.aeonbits.owner\owner\1.0.12\c6ee88593294674c8c8ccdbd855db3f5396a4d19\owner-1.0.12.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-params\5.10.0\9041c7365495a897a64782ea5a6fdb99dab1814e\junit-jupiter-params-5.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-engine\5.10.0\90587932d718fc51a48112d33045a18476c542ad\junit-jupiter-engine-5.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-junit5\2.21.0\4754a9d66accee4c27109c2abf4f5411f4b1d167\allure-junit5-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-junit-platform\2.21.0\92847d9a4a0814334ee2ebdf4b3fc19b2e0ae256\allure-junit-platform-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter-api\5.10.0\2fe4ba3d31d5067878e468c96aa039005a9134d3\junit-jupiter-api-5.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-launcher\1.10.0\89a1922534ed102be1fb2a8c0b2c6151297a12bf\junit-platform-launcher-1.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-engine\1.10.0\276c4edcf64fabb5a139fa7b4f99330d7a93b804\junit-platform-engine-1.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.platform\junit-platform-commons\1.10.0\d533ff2c286eaf963566f92baf5f8a06628d2609\junit-platform-commons-1.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.junit.jupiter\junit-jupiter\5.10.0\8fea1d9c58b2156f1b998f2f18da04bc9e087f74\junit-jupiter-5.10.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.assertj\assertj-core\3.24.2\ebbf338e33f893139459ce5df023115971c2786f\assertj-core-3.24.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-selenide\2.21.0\f23424588e32c6f80df72320130bea287061caef\allure-selenide-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-rest-assured\2.21.0\43b64053aad673e8a6f4904002bdaa13a1b82f9f\allure-rest-assured-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.rest-assured\rest-assured\5.5.2\92131b537d9aaa82d8f2a9aa3d116676b2849846\rest-assured-5.5.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-attachments\2.21.0\4e58ca9d36f593eb420ea6d75a104a83c9c058ca\allure-attachments-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-test-filter\2.21.0\b7bedd6f35ce4a14c1fece2426b66c3d47bd8f3e\allure-test-filter-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-java-commons\2.21.0\d996f5274afbf6f941c99ad40a7b86650588ddd2\allure-java-commons-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-transport-httpclient5\3.3.4\2d4af09c2db7b040228f28513ebf80f4c322a00a\docker-java-transport-httpclient5-3.3.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents.client5\httpclient5\5.2.1\c900514d3446d9ce5d9dbd90c21192048125440\httpclient5-5.2.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\1.7.30\cd92524ea19d27e5b94ecd251e1af729cffdfe15\jcl-over-slf4j-1.7.30.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-java\4.13.0\18cef0adbc08d152da07b234a04f6e8240ce215f\selenium-java-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-support\4.13.0\decde2a7df52ce78132dc6fe6085384327c844f0\selenium-support-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-chrome-driver\4.13.0\490603c4c79f938ffaf30058a675d850d9717265\selenium-chrome-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v115\4.13.0\76c322f8b51ce2176c1b9aae458e13d18aa51276\selenium-devtools-v115-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v116\4.13.0\5bb40cd24bcaf9d6015eb6cdf76784506d36c033\selenium-devtools-v116-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v117\4.13.0\86db93ca74312d7795df726d0412cb350c31f15b\selenium-devtools-v117-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-firefox-driver\4.13.0\2f2eb0ff81797444908024dd05b36fe287204cfe\selenium-firefox-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v85\4.13.0\5469963e082f59946ec627114f7baa2fa5bf81d8\selenium-devtools-v85-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-edge-driver\4.13.0\5f818b6057c9a9abc3b4ac9c1b9d5dd5e478d753\selenium-edge-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-ie-driver\4.13.0\67137653d0d2e0c4f6ea735c9e57772ed9f5b3f4\selenium-ie-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-safari-driver\4.13.0\739a5e2a88b640ee7660779ece1fa0f8cfaa1372\selenium-safari-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-chromium-driver\4.13.0\4ff91ea6a6b7157e44490269664419cc1a008f64\selenium-chromium-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-remote-driver\4.13.0\5d9f84d7d51174a54fa507b1418db3b1feddec6a\selenium-remote-driver-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.asynchttpclient\async-http-client\2.12.3\6dfc91814cc8b3bc3327246d0e5df36911b9a623\async-http-client-2.12.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-api\3.3.4\f5f58affdfb9479519457a362c4f2d9ebbe263b3\docker-java-api-3.3.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.asynchttpclient\async-http-client-netty-utils\2.12.3\ad99d8622931ed31367d0fef7fa17eb62e033fb3\async-http-client-netty-utils-2.12.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\2.0.10\7af762c03f74a463d36d5786ec67006cce865892\slf4j-api-2.0.10.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy\1.14.5\28a424c0c4f362568e904d992c239c996cf7adc7\byte-buddy-1.14.5.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-http\4.13.0\351d1c150e47cf863027020fef3b9f4f38a6c99c\selenium-http-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-manager\4.13.0\d474cc621720e47e9f00ef7f4fec8cc76643d41b\selenium-manager-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-os\4.13.0\91ce811433b76a85ff37e8b3aeaf2b919f4e65ff\selenium-os-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\32.1.3-jre\f306708742ce2bf0fb0901216183bc14073feae\guava-32.1.3-jre.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.rest-assured\xml-path\5.5.2\717ad3a4b54a6065e99d7a17ef85630b6c58d533\xml-path-5.5.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.rest-assured\json-path\5.5.2\5ebc5f805d50e9ab323990a67ac819179c0472dc\json-path-5.5.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.rest-assured\rest-assured-common\5.5.2\52f6138ded842e348c35efae775a49f3689a1033\rest-assured-common-5.5.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.16.0\3eb54effe40946dfb06dc5cd6c7ce4116cd51ea4\commons-lang3-3.16.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.15.3\79baf4e605eb3bbb60b1c475d44a7aecceea1d60\jackson-annotations-2.15.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.15.3\a734bc2c47a9453c4efa772461a3aeb273c010d9\jackson-databind-2.15.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.15.3\60d600567c1862840397bf9ff5a92398edc5797b\jackson-core-2.15.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.10.1\b3add478d4382b78ea20b1671390a858002feb6c\gson-2.10.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.brotli\dec\0.1.2\c26a897ae0d524809eef1c786cc6183b4ddcc3b\dec-0.1.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-compress\1.25.0\9d35aec423da6c8a7f93d7e9e1c6b1d9fe14bb5e\commons-compress-1.25.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-validator\commons-validator\1.7\76069c915de3787f3ddd8726a56f47a95bfcbb0e\commons-validator-1.7.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-json\4.13.0\ebab8a0a864a9715df77b8c615d8c41709282924\selenium-json-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-api\4.13.0\d0471521e3618fad0afa585103ba9f07c899b3ca\selenium-api-4.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.groovy\groovy-json\4.0.22\5c8edac1ee596375a3d28fc2c0e844ee067f6b6b\groovy-json-4.0.22.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.groovy\groovy-xml\4.0.22\951b9a1f3891981aa152fd02076a8ba6c20857e7\groovy-xml-4.0.22.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.groovy\groovy\4.0.22\a04df669ad2778678072315bc92f10f03362e7d7\groovy-4.0.22.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpmime\4.5.13\efc110bad4a0d45cda7858e6beee1d8a8313da5a\httpmime-4.5.13.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpclient\4.5.13\e5f6cae5ca7ecaac1ec2827a9e2d65ae2869cada\httpclient-4.5.13.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.hamcrest\hamcrest\2.2\1820c0968dba3a11a1b30669bb1f01978a91dedc\hamcrest-2.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.ccil.cowan.tagsoup\tagsoup\1.2.1\5584627487e984c03456266d3f8802eb85a9ce97\tagsoup-1.2.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.opentest4j\opentest4j\1.3.0\152ea56b3a72f655d4fd677fc0ef2596c3dd5e6e\opentest4j-1.3.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.guava\failureaccess\1.0.1\1dcf1de382a0bf95a3d8b0849546c88bac1292c9\failureaccess-1.0.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\b421526c5f297295adef1c886e5246c39d4ac629\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.checkerframework\checker-qual\3.37.0\ba74746d38026581c12166e164bb3c15e90cc4ea\checker-qual-3.37.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.errorprone\error_prone_annotations\2.21.1\6d9b10773b5237df178a7b3c1b4208df7d0e7f94\error_prone_annotations-2.21.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.qameta.allure\allure-model\2.21.0\2ba1815eb0258a4eb6d01c19d1cf6d8b3657c06e\allure-model-2.21.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-transport\3.3.4\87f856e47c9f8d416518b18f88c15cad74cc2cae\docker-java-transport-3.3.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\5.13.0\1200e7ebeedbe0d10062093f32925a912020e747\jna-5.13.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents.core5\httpcore5-h2\5.2\698bd8c759ccc7fd7398f3179ff45d0e5a7ccc16\httpcore5-h2-5.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents.core5\httpcore5\5.2\ab7d251b8dfa3f2878f1eefbcca0e1fc0ebeba27\httpcore5-5.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-beanutils\commons-beanutils\1.9.4\d52b9abcd97f38c81342bb7e7ae1eee9b73cba51\commons-beanutils-1.9.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-digester\commons-digester\2.1\73a8001e7a54a255eef0f03521ec1805dc738ca0\commons-digester-2.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-logging\commons-logging\1.2\4bfc12adfe4842bf07b657f0369c4cb522955686\commons-logging-1.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-collections\commons-collections\3.2.2\8ad72fe39fa8c91eaaf12aadb21e0c3661fe26d5\commons-collections-3.2.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents\httpcore\4.4.13\853b96d3afbb7bf8cc303fe27ee96836a10c1834\httpcore-4.4.13.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.11\3acb4705652e16236558f0f4f2192cc33c3bd189\commons-codec-1.11.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.freemarker\freemarker\2.3.31\cd4fc0942b4a8bdb19f3b669aa42136fb54feb55\freemarker-2.3.31.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.google.auto.service\auto-service-annotations\1.1.1\da12a15cd058ba90a0ff55357fb521161af4736d\auto-service-annotations-1.1.1.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-handler-proxy\4.1.60.Final\2352f12826400e5db64b36fd951508ce9a61c196\netty-handler-proxy-4.1.60.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-codec-http\4.1.96.Final\a4d0d95df5026965c454902ef3d6d84b81f89626\netty-codec-http-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.96.Final\9faf365396c933f1b39b60d129391c6c6c43fb86\netty-transport-native-epoll-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-epoll\4.1.96.Final\3f8904e072cfc9a8d67c6fe567c39bcbce5c9c55\netty-transport-native-epoll-4.1.96.Final-linux-x86_64.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-classes-epoll\4.1.96.Final\b0369501645f6e71f89ff7f77b5c5f52510a2e31\netty-transport-classes-epoll-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-kqueue\4.1.96.Final\2721cf6fe8752168dafdd4187ae097e6cf9dd9f5\netty-transport-native-kqueue-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-kqueue\4.1.96.Final\c127ed313fc80cf2cb366dccfded1daddc89a8ef\netty-transport-native-kqueue-4.1.96.Final-osx-x86_64.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-classes-kqueue\4.1.96.Final\782f6bbb8dd5401599d272ea0fb81d1356bdffb2\netty-transport-classes-kqueue-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.typesafe.netty\netty-reactive-streams\2.0.4\f77c8eaa7d5e2f2160b6d21ba385cf726f164b2\netty-reactive-streams-2.0.4.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-handler\4.1.96.Final\7840d7523d709e02961b647546f9d9dde1699306\netty-handler-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport-native-unix-common\4.1.96.Final\daf8578cade63a01525ee9d70371fa78e6e91094\netty-transport-native-unix-common-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-codec-socks\4.1.60.Final\6f4573281df659265bd709fd10471c3e00ef6c70\netty-codec-socks-4.1.60.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-codec\4.1.96.Final\9cfe430f8b14e7ba86969d8e1126aa0aae4d18f0\netty-codec-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-transport\4.1.96.Final\dbd15ca244be28e1a98ed29b9d755edbfa737e02\netty-transport-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-buffer\4.1.96.Final\4b80fffbe77485b457bf844289bf1801f61b9e91\netty-buffer-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-resolver\4.1.96.Final\e51db5568a881e0f9b013b35617c597dc32f130\netty-resolver-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.netty\netty-common\4.1.96.Final\d10c167623cbc471753f950846df241d1021655c\netty-common-4.1.96.Final.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-exporter-logging\1.28.0\e6721fd80fe703a9bbaf8fcdf269aa878a2fa963\opentelemetry-exporter-logging-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.28.0\6db66c77ca29a8d05227324a8392b736744bbe3f\opentelemetry-sdk-extension-autoconfigure-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.28.0\582ce034be1262aac6d77b92ec2d6cf4884cee4d\opentelemetry-sdk-extension-autoconfigure-spi-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk\1.28.0\a1ca3938a03e5bb0749dc92da91edf76f6ee3b7f\opentelemetry-sdk-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-trace\1.28.0\18797986d45940d873430023280211d6990680c\opentelemetry-sdk-trace-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-metrics\1.28.0\4d955fb6c2ec89b4f55d88d7aed4dd9c36809235\opentelemetry-sdk-metrics-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-logs\1.28.0\adcd0bc96bc77152a15b3b8890bd8a04dd0bf36b\opentelemetry-sdk-logs-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-common\1.28.0\b25e52ef6829bb41db3227d8fcc206009b018f40\opentelemetry-sdk-common-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-semconv\1.28.0-alpha\97336840db7cb0ef7e5d292f7cec5bdb385cc370\opentelemetry-semconv-1.28.0-alpha.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-api-events\1.28.0-alpha\c663155d53746308c8d2e37121b990c3a8de8d58\opentelemetry-api-events-1.28.0-alpha.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-extension-incubator\1.28.0-alpha\ad51d2ab228f522448afb90503ce005ce4a4f2ac\opentelemetry-extension-incubator-1.28.0-alpha.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-api\1.28.0\ebdea4fbe23c3929f1702b176d2cd63ac6288f0\opentelemetry-api-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-context\1.28.0\468c460d80c5a6e0fdddd3c1a83148b316571c22\opentelemetry-context-1.28.0.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.bouncycastle\bcpkix-jdk18on\1.76\10c9cf5c1b4d64abeda28ee32fbade3b74373622\bcpkix-jdk18on-1.76.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.reactivestreams\reactive-streams\1.0.3\d9fb7a7926ffa635b3dcaa5049fb2bfa25b3e7d0\reactive-streams-1.0.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\com.sun.activation\jakarta.activation\1.2.2\74548703f9851017ce2f556066659438019e7eb5\jakarta.activation-1.2.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\dev.failsafe\failsafe\3.3.2\738a986f1f0e4b6c6a49d351dddc772d1378c5a8\failsafe-3.3.2.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-exec\1.3\8dfb9facd0830a27b1b5f29f84593f0aeee7773b\commons-exec-1.3.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.bouncycastle\bcutil-jdk18on\1.76\8c7594e651a278bcde18e038d8ab55b1f97f4d31\bcutil-jdk18on-1.76.jar;C:\Users\ASUS\.gradle\caches\modules-2\files-2.1\org.bouncycastle\bcprov-jdk18on\1.76\3a785d0b41806865ad7e311162bfa3fa60b3965b\bcprov-jdk18on-1.76.jar
+user.name=ASUS
+java.vm.specification.version=1.8
+sun.java.command=worker.org.gradle.process.internal.worker.GradleWorkerMain 'Gradle Test Executor 21'
+java.home=C:\Program Files\Zulu\zulu-8\jre
+sun.arch.data.model=64
+user.language=ru
+java.specification.vendor=Oracle Corporation
+awt.toolkit=sun.awt.windows.WToolkit
+java.vm.info=mixed mode
+java.version=1.8.0_472
+java.ext.dirs=C:\Program Files\Zulu\zulu-8\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext
+sun.boot.class.path=C:\Program Files\Zulu\zulu-8\jre\lib\resources.jar;C:\Program Files\Zulu\zulu-8\jre\lib\rt.jar;C:\Program Files\Zulu\zulu-8\jre\lib\sunrsasign.jar;C:\Program Files\Zulu\zulu-8\jre\lib\jsse.jar;C:\Program Files\Zulu\zulu-8\jre\lib\jce.jar;C:\Program Files\Zulu\zulu-8\jre\lib\charsets.jar;C:\Program Files\Zulu\zulu-8\jre\lib\jfr.jar;C:\Program Files\Zulu\zulu-8\jre\lib\cat.jar;C:\Program Files\Zulu\zulu-8\jre\classes
+java.vendor=Azul Systems, Inc.
+org.gradle.test.worker=21
+java.specification.maintenance.version=6
+file.separator=\
+java.vendor.url.bug=http://www.azul.com/support/
+sun.io.unicode.encoding=UnicodeLittle
+sun.cpu.endian=little
+sun.desktop=windows
+sun.cpu.isalist=amd64
+---- Command Line ---
+Empty
+---- Full Classpath ---
+Empty
+---- Compiler Messages ---
+Empty
