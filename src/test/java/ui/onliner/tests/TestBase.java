@@ -36,7 +36,7 @@ public class TestBase {
         String remoteUrl = getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.remote = remoteUrl;
         setupSelenoidCapabilities();
-
+        String remoteUrl = REMOTE_DRIVER_URL;
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         logConfiguration();
