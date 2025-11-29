@@ -73,10 +73,7 @@ tasks.processTestResources {
 tasks.withType(Test) {
     useJUnitPlatform()
     systemProperties(System.getProperties())
-    def tags = System.getProperty('tags', '')
-    if (!tags.isEmpty()) {
-        useJUnitPlatform { includeTags(tags) }
-    }
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
@@ -85,21 +82,38 @@ tasks.withType(Test) {
     }
 }
 
-// --- Разделение тестов ---
+// --- РАЗДЕЛЕНИЕ ТЕСТОВ ПО ТЕГАМ ---
+
+// 1. Только API тесты
 task api_test(type: Test) {
     group = "verification"
     description = "Run only API tests"
-    useJUnitPlatform { includeTags("api") }
+    useJUnitPlatform {
+        includeTags("api")
+    }
 }
 
+// 2. Только UI тесты
 task ui_test(type: Test) {
     group = "verification"
     description = "Run only UI tests"
-    useJUnitPlatform { includeTags("ui") }
+    useJUnitPlatform {
+        includeTags("ui")
+    }
 }
 
-task all_tests(type: Test) {
+// 3. Только MOBILE тесты
+task mobile_test(type: Test) {
     group = "verification"
-    description = "Run all tests"
+    description = "Run only MOBILE tests"
+    useJUnitPlatform {
+        includeTags("mobile")
+    }
+}
+
+
+// 4. Задача по умолчанию (при запуске ./gradlew test)
+test {
     useJUnitPlatform()
+    description = "Default task - runs all tests"
 }

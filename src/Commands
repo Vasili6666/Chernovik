@@ -1,0 +1,11 @@
+# 1. Только API тесты
+./gradlew api_test
+
+# 2. Только UI тесты
+./gradlew ui_test
+
+# 3. Только MOBILE тесты
+./gradlew mobile_test
+
+# 4. Запуск по умолчанию (все тесты)
+./gradlew test

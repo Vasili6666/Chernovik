@@ -6,7 +6,6 @@ import api.jsonplaceholder.testdata.TestData;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import tests.ApiTestBase;
 
 @Tag("api")
 public class JsonPlaceholderTests extends ApiTestBase {

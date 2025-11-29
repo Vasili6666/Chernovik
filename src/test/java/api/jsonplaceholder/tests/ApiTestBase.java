@@ -1,5 +1,5 @@
 // Создаем файл ApiTestBase.java
-package tests;
+package api.jsonplaceholder.tests;
 
 import helpers.CustomAllureListener;
 import io.restassured.RestAssured;

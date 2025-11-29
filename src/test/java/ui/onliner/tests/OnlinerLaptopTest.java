@@ -4,7 +4,6 @@ import io.qameta.allure.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-import tests.TestBase;
 import ui.onliner.pages.*;
 
 import static io.qameta.allure.Allure.step;
@@ -12,7 +11,8 @@ import static io.qameta.allure.Allure.step;
 @Epic("Onliner.by E-commerce")
 @Feature("Корзина покупок")
 @Story("Добавление и удаление товаров из корзины")
-@Tag("onliner")
+@Tag("ui")
+
 public class OnlinerLaptopTest extends TestBase {
 
     private String laptopName = "";
