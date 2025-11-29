@@ -74,6 +74,10 @@ tasks.withType(Test) {
     useJUnitPlatform()
     systemProperties(System.getProperties())
 
+    // Добавить эти свойства для Selenoid
+    systemProperty "webDriverHost", System.getProperty("webDriverHost", "selenoid.autotests.cloud")
+    systemProperty "remoteUrl", System.getProperty("remoteUrl", "")
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
