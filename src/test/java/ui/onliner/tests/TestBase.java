@@ -32,11 +32,11 @@ public class TestBase {
         System.setProperty("org.aspectj.weaver.loadtime.configuration", "ajcore-disable");
         System.setProperty("aspectj.dump", "none");
 
-        // 🔥 ИЗМЕНЕНИЕ: Сelenoid ВКЛЮЧЕН ПО УМОЛЧАНИЮ
+        // 🔥 SELENOID ВКЛЮЧЕН ПО УМОЛЧАНИЮ
         String remoteUrl = getProperty("remoteUrl", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
         Configuration.remote = remoteUrl;
         setupSelenoidCapabilities();
-        String remoteUrl = REMOTE_DRIVER_URL;
+
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
         logConfiguration();
@@ -70,7 +70,7 @@ public class TestBase {
         Attach.pageSource();
         Attach.browserConsoleLogs();
 
-        // 🔥 ИЗМЕНЕНИЕ: Видео всегда включено
+        // 🔥 Видео всегда включено для Selenoid
         Attach.addVideo();
 
         closeWebDriver();
