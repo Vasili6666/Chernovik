@@ -10,12 +10,6 @@ public class CartPage {
     private final SelenideElement productDescription = $(".cart-form__description_condensed-other");
     private final SelenideElement removeButton = $(".cart-form__button_remove");
     private final SelenideElement removalMessage = $(".cart-form__description_condensed-extra");
-    private final SelenideElement cartTitle = $(".cart-form__title");
-
-    @Step("Проверить что корзина загружена")
-    public void verifyCartPageLoaded() {
-        cartTitle.shouldBe(visible);
-    }
 
     @Step("Проверить что товар добавлен в корзину")
     public void verifyProductAdded() {
@@ -33,13 +27,5 @@ public class CartPage {
         removalMessage.shouldHave(text("Вы удалили"));
     }
 
-    @Step("Получить текст сообщения об удалении")
-    public String getRemovalMessage() {
-        return removalMessage.getText();
-    }
 
-    @Step("Получить название товара в корзине")
-    public String getProductNameInCart() {
-        return productDescription.getText();
-    }
 }

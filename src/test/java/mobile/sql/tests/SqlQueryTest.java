@@ -28,6 +28,5 @@ public class SqlQueryTest extends MobileTestBase {
         Attach.screenshotAs("SQL Query Results");
         Attach.pageSource();
 
-        System.out.println("🎉 Тест успешно завершен!");
     }
 }

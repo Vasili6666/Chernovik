@@ -37,8 +37,5 @@ public class ProductPage {
         sleep(5000);
     }
 
-    @Step("Проверить что страница товара загружена")
-    public void verifyProductPageLoaded() {
-        productTitle.shouldBe(visible);
-    }
+
 }

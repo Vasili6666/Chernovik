@@ -60,9 +60,9 @@ public class SqlPracticeScreen {
         String salary2 = secondSalary.getText();
 
         if (guerin1.equals(guerin2) && salary1.equals(salary2)) {
-            System.out.println("✅ ТЕСТ ПРОЙДЕН! Значения совпадают");
+            System.out.println("ТЕСТ ПРОЙДЕН! Значения совпадают");
         } else {
-            throw new AssertionError("❌ ТЕСТ ПРОВАЛЕН! Значения не совпадают");
+            throw new AssertionError("ТЕСТ ПРОВАЛЕН! Значения не совпадают");
         }
 
         return this;

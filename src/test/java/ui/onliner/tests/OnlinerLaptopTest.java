@@ -21,7 +21,7 @@ public class OnlinerLaptopTest extends TestBase {
     @DisplayName("Добавление и удаление ноутбука из корзины")
     @Description("Тест проверяет полный цикл: выбор ноутбука, добавление в корзину и удаление")
     @Severity(SeverityLevel.CRITICAL)
-    @Owner("QA Team")
+    @Owner("Vasili Platonau")
     @Link(name = "Onliner.by", url = "https://www.onliner.by")
     void buyAndRemoveLaptopFromCart() {
         MainPage mainPage = new MainPage();

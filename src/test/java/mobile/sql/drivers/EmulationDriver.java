@@ -27,14 +27,11 @@ public class EmulationDriver implements WebDriverProvider {
                 .setAppPackage(config.appPackage())
                 .setAppActivity(config.appActivity());
 
-        System.out.println("🚀 Запускаем SQL Practice PRO...");
-        System.out.println("📱 Устройство: " + config.deviceName());
-        System.out.println("🔢 Версия ОС: " + config.osVersion());
 
         try {
             return new AndroidDriver(new URL(config.appiumServerUrl()), options);
         } catch (MalformedURLException e) {
-            throw new RuntimeException("❌ Ошибка создания URL для Appium сервера", e);
+            throw new RuntimeException(" Ошибка создания URL для Appium сервера", e);
         }
     }
 }

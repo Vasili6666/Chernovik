@@ -33,7 +33,7 @@ public class MobileTestBase {
         System.out.println("🎬 Инициализация драйвера...");
         open();
 
-        // Просто запускаем запись без параметров
+
         startVideoRecording();
     }
 
@@ -41,7 +41,7 @@ public class MobileTestBase {
     void addAttachments() {
         System.out.println("📸 Сбор вложений для отчета...");
 
-        // Прикрепляем видео
+
         VideoAttach.attachVideo();
 
         Attach.screenshotAs("Final screenshot");
@@ -52,7 +52,6 @@ public class MobileTestBase {
     private void startVideoRecording() {
         try {
             AndroidDriver driver = (AndroidDriver) getWebDriver();
-            // Простой запуск записи без параметров
             driver.startRecordingScreen();
             System.out.println("🎥 Запись видео запущена");
         } catch (Exception e) {
