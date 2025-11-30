@@ -20,7 +20,7 @@ public class VideoAttach {
 
             System.out.println("🛑 Останавливаем запись видео...");
 
-            // Останавливаем запись и получаем видео в base64
+
             String videoBase64 = driver.stopRecordingScreen();
 
             if (videoBase64 == null || videoBase64.isEmpty()) {
@@ -30,7 +30,7 @@ public class VideoAttach {
 
             System.out.println("📹 Получены данные видео, размер base64: " + videoBase64.length());
 
-            // Декодируем base64 в байты
+
             byte[] videoData = java.util.Base64.getDecoder().decode(videoBase64);
 
             if (videoData.length == 0) {
@@ -38,7 +38,7 @@ public class VideoAttach {
                 return new byte[0];
             }
 
-            // Сохраняем видео в файл для диагностики
+
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss"));
             saveVideoToFile(videoData, "test-video-" + timestamp);
 

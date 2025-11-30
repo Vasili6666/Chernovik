@@ -14,8 +14,6 @@ public class BaseSpecs {
             .setBaseUri("https://jsonplaceholder.typicode.com")
             .setContentType(ContentType.JSON)
             .setAccept(ContentType.JSON)
-            //.addFilter(withCustomTemplates())
-            //.addFilter(new AllureRestAssured())
             .log(URI)
             .log(BODY)
             .log(HEADERS)

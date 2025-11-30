@@ -1,4 +1,4 @@
-// [file name]: helpers/Attach.java
+
 package mobile.sql.helpers;
 
 import io.qameta.allure.Attachment;
@@ -20,8 +20,4 @@ public class Attach {
         return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
     }
 
-    @Attachment(value = "{attachName}", type = "text/plain")
-    public static String attachAsText(String attachName, String message) {
-        return message;
-    }
 }

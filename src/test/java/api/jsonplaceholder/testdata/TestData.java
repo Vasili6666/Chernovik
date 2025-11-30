@@ -2,7 +2,7 @@ package api.jsonplaceholder.testdata;
 
 public class TestData {
 
-    // Данные для постов
+
     public static class PostData {
         public static final int POST_ID = 1;
         public static final int ANOTHER_POST_ID = 20;
@@ -13,7 +13,7 @@ public class TestData {
         public static final int USER_ID = 1;
     }
 
-    // Данные для пользователей
+
     public static class UserData {
         public static final int EXISTING_USER_ID = 4;
         public static final int NON_EXISTING_USER_ID = 24;
