@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
@@ -16,22 +17,26 @@ public class TestBase {
 
     @BeforeAll
     static void setup() {
-        Configuration.baseUrl = "https://onliner.by";
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
+        // Получаем конфигурацию из системных свойств с дефолтными значениями
+        Configuration.baseUrl = System.getProperty("baseUrl", "https://onliner.by");
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.remote = System.getProperty("remoteUrl",
+                "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+
+        // Всегда настраиваем Selenoid capabilities, так как remoteUrl всегда есть
+        setupSelenoidCapabilities();
+
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
-
-
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        setupSelenoidCapabilities();
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     private static void setupSelenoidCapabilities() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        HashMap<String, Object> selenoidOptions = new HashMap<>();
+        Map<String, Object> selenoidOptions = new HashMap<>();
         selenoidOptions.put("enableVNC", true);
         selenoidOptions.put("enableVideo", true);
         capabilities.setCapability("selenoid:options", selenoidOptions);
