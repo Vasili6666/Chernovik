@@ -8,41 +8,44 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import java.io.FileInputStream;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class TestBase {
 
     @BeforeAll
-    static void setup() {
-        // Получаем конфигурацию из системных свойств
+    static void setup() throws Exception {
         Configuration.baseUrl = System.getProperty("baseUrl", "https://onliner.by");
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
 
-        // ИСПРАВЛЕНИЕ: правильно получаем remoteUrl
-        String remoteUrl = System.getProperty("remoteUrl");
+        Configuration.remote = getRemoteUrl();
 
-        if (remoteUrl == null || remoteUrl.trim().isEmpty()) {
-            // Если параметр не передан или пустой - используем дефолтный Selenoid
-            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        } else {
-            // Если параметр передан - используем его
-            Configuration.remote = remoteUrl;
-        }
-
-        System.out.println("🌐 Using remote URL: " + Configuration.remote);
-
-        // Всегда настраиваем Selenoid capabilities
         setupSelenoidCapabilities();
 
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
 
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    }
+
+    private static String getRemoteUrl() throws Exception {
+        Properties props = new Properties();
+        props.load(new FileInputStream("local.properties"));
+
+        return "https://" +
+                props.getProperty("SELENOID_USER") + ":" +
+                props.getProperty("SELENOID_PASSWORD") + "@" +
+                props.getProperty("SELENOID_HOST") + "/wd/hub";
+    }
+
+    private static String maskPassword(String url) {
+        return url.replaceAll(":([^:@]+)@", ":***@");
     }
 
     private static void setupSelenoidCapabilities() {
