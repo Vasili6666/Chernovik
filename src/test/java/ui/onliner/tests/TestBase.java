@@ -2,7 +2,7 @@ package ui.onliner.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
-import helpers.Attach;
+import ui.onliner.helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,15 +17,26 @@ public class TestBase {
 
     @BeforeAll
     static void setup() {
-        // Получаем конфигурацию из системных свойств с дефолтными значениями
+        // Получаем конфигурацию из системных свойств
         Configuration.baseUrl = System.getProperty("baseUrl", "https://onliner.by");
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
-        Configuration.remote = System.getProperty("remoteUrl",
-                "https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
-        // Всегда настраиваем Selenoid capabilities, так как remoteUrl всегда есть
+        // ИСПРАВЛЕНИЕ: правильно получаем remoteUrl
+        String remoteUrl = System.getProperty("remoteUrl");
+
+        if (remoteUrl == null || remoteUrl.trim().isEmpty()) {
+            // Если параметр не передан или пустой - используем дефолтный Selenoid
+            Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        } else {
+            // Если параметр передан - используем его
+            Configuration.remote = remoteUrl;
+        }
+
+        System.out.println("🌐 Using remote URL: " + Configuration.remote);
+
+        // Всегда настраиваем Selenoid capabilities
         setupSelenoidCapabilities();
 
         Configuration.pageLoadStrategy = "eager";

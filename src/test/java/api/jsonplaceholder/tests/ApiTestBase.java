@@ -1,7 +1,7 @@
 // Создаем файл ApiTestBase.java
 package api.jsonplaceholder.tests;
 
-import helpers.CustomAllureListener;
+import ui.onliner.helpers.CustomAllureListener;
 import io.restassured.RestAssured;
 import org.junit.jupiter.api.BeforeAll;
 
