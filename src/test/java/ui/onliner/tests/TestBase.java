@@ -24,7 +24,13 @@ public class TestBase {
         Configuration.browserVersion = System.getProperty("browserVersion", "128.0");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
 
-        Configuration.remote = getRemoteUrl();
+        // Исправление: правильно проверяем пустую строку
+        String remoteParam = System.getProperty("remoteUrl");
+        if (remoteParam != null && !remoteParam.trim().isEmpty()) {
+            Configuration.remote = remoteParam;
+        } else {
+            Configuration.remote = getLocalUrl();
+        }
 
         setupSelenoidCapabilities();
 
@@ -34,7 +40,7 @@ public class TestBase {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
-    private static String getRemoteUrl() throws Exception {
+    private static String getLocalUrl() throws Exception {
         Properties props = new Properties();
         props.load(new FileInputStream("local.properties"));
 
@@ -42,10 +48,6 @@ public class TestBase {
                 props.getProperty("SELENOID_USER") + ":" +
                 props.getProperty("SELENOID_PASSWORD") + "@" +
                 props.getProperty("SELENOID_HOST") + "/wd/hub";
-    }
-
-    private static String maskPassword(String url) {
-        return url.replaceAll(":([^:@]+)@", ":***@");
     }
 
     private static void setupSelenoidCapabilities() {
